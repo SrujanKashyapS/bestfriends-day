@@ -1028,6 +1028,21 @@ body::after {
   transform: translateY(0);
 }
 
+/* "One Last Thing" button after surprise */
+.one-last-thing-btn {
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.one-last-thing-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
 /* Warm background transition for surprise */
 .section.warm-bg {
   background: var(--warm-gradient);

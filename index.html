@@ -189,46 +189,9 @@
   </div>
 
   <!-- ============================================
-       SECTION 5 — Voice Note
+       SECTION 5 — Friendship Timeline
        ============================================ -->
   <div class="section" id="section-4" data-section="4">
-    <div class="voice-section-content">
-      <div class="voice-section-icon">🎙️</div>
-      <h2 class="voice-section-title">Wait... I recorded something for you</h2>
-      <p class="voice-section-subtitle">Some things are better heard than read</p>
-
-      <div class="voice-note-wrapper" id="voiceNoteWrapper">
-        <button class="voice-note-btn" id="voiceNoteBtn" aria-label="Play voice note">
-          <span class="voice-note-ring"></span>
-          <span class="voice-note-ring ring-2"></span>
-          <svg class="voice-icon play-icon" id="voicePlayIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/>
-          </svg>
-          <svg class="voice-icon pause-icon" id="voicePauseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-            <rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
-            <rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
-          </svg>
-        </button>
-        <div class="voice-note-progress" id="voiceProgress">
-          <div class="voice-note-bar" id="voiceBar"></div>
-        </div>
-        <div class="voice-note-hint">tap to play</div>
-      </div>
-      <audio id="voiceAudio" preload="auto">
-        <source src="assets/voice-note.mp3" type="audio/mpeg">
-        <source src="assets/voice-note.ogg" type="audio/ogg">
-      </audio>
-
-      <p class="voice-section-footnote">"Words fade. But the voice of a friend stays."</p>
-
-      <button class="gold-btn" onclick="goToSection(5)" style="margin-top:2rem;">Continue →</button>
-    </div>
-  </div>
-
-  <!-- ============================================
-       SECTION 6 — Friendship Timeline
-       ============================================ -->
-  <div class="section" id="section-5" data-section="5">
     <div class="timeline-content">
       <h2>Our Journey</h2>
 
@@ -257,15 +220,15 @@
       </div>
 
       <div class="timeline-btn">
-        <button class="gold-btn" onclick="goToSection(6)">Continue →</button>
+        <button class="gold-btn" onclick="goToSection(5)">Continue →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       SECTION 7 — Secret Letter
+       SECTION 6 — Secret Letter
        ============================================ -->
-  <div class="section" id="section-6" data-section="6">
+  <div class="section" id="section-5" data-section="5">
     <div class="letter-content">
       <div class="letter-card">
         <!-- CUSTOMIZE: Edit the letter lines below -->
@@ -276,19 +239,57 @@
         <div class="letter-line" id="letter-4">Happy Best Friends Day ❤️</div>
       </div>
       <div class="letter-btn" id="letterBtn">
+        <button class="gold-btn" onclick="goToSection(6)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 7 — Final Surprise
+       ============================================ -->
+  <div class="section" id="section-6" data-section="6">
+    <div class="surprise-content">
+      <button class="gold-btn surprise-calc-btn" id="calcBtn">Calculate Friendship Value</button>
+      <div class="surprise-sequence" id="surpriseSequence" style="display:none;"></div>
+      <div class="final-message" id="finalMessage">See you in the next chapter. 🥂</div>
+      <div class="one-last-thing-btn" id="oneLastThingBtn">
         <button class="gold-btn" onclick="goToSection(7)">One Last Thing →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       SECTION 8 — Final Surprise
+       SECTION 8 — Voice Note (The Final Surprise)
        ============================================ -->
   <div class="section" id="section-7" data-section="7">
-    <div class="surprise-content">
-      <button class="gold-btn surprise-calc-btn" id="calcBtn">Calculate Friendship Value</button>
-      <div class="surprise-sequence" id="surpriseSequence" style="display:none;"></div>
-      <div class="final-message" id="finalMessage">See you in the next chapter. 🥂</div>
+    <div class="voice-section-content">
+      <div class="voice-section-icon">🎙️</div>
+      <h2 class="voice-section-title">Before you go... press play.</h2>
+      <p class="voice-section-subtitle">Some things are better heard than read</p>
+
+      <div class="voice-note-wrapper" id="voiceNoteWrapper">
+        <button class="voice-note-btn" id="voiceNoteBtn" aria-label="Play voice note">
+          <span class="voice-note-ring"></span>
+          <span class="voice-note-ring ring-2"></span>
+          <svg class="voice-icon play-icon" id="voicePlayIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/>
+          </svg>
+          <svg class="voice-icon pause-icon" id="voicePauseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
+            <rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
+          </svg>
+        </button>
+        <div class="voice-note-progress" id="voiceProgress">
+          <div class="voice-note-bar" id="voiceBar"></div>
+        </div>
+        <div class="voice-note-hint">tap to play</div>
+      </div>
+      <audio id="voiceAudio" preload="auto">
+        <source src="assets/voice-note.mp3" type="audio/mpeg">
+        <source src="assets/voice-note.ogg" type="audio/ogg">
+      </audio>
+
+      <p class="voice-section-footnote">"Words fade. But the voice of a friend stays forever."</p>
     </div>
   </div>
 

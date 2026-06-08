@@ -171,10 +171,10 @@
       case 2:
         if (!scannerRan) runScanner();
         break;
-      case 5:
+      case 4:
         if (!timelineRan) runTimeline();
         break;
-      case 6:
+      case 5:
         if (!letterRan) runLetter();
         break;
     }
@@ -456,7 +456,7 @@
       surpriseSeq.appendChild(subtext);
 
       // Warm background
-      document.getElementById('section-7').classList.add('warm-bg');
+      document.getElementById('section-6').classList.add('warm-bg');
 
       // Confetti burst
       fireConfetti();
@@ -464,6 +464,10 @@
       // Final message
       setTimeout(() => {
         finalMessage.classList.add('visible');
+        // Show "One Last Thing" button after final message
+        setTimeout(() => {
+          document.getElementById('oneLastThingBtn').classList.add('visible');
+        }, 1500);
       }, 1200);
     }, 3000);
   });

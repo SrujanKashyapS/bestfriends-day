@@ -192,7 +192,10 @@
         </div>
         <div class="voice-note-hint">tap to play</div>
       </div>
-      <audio id="voiceAudio" src="assets/voice-note.ogg" preload="auto"></audio>
+      <audio id="voiceAudio" preload="auto">
+        <source src="assets/voice-note.mp3" type="audio/mpeg">
+        <source src="assets/voice-note.ogg" type="audio/ogg">
+      </audio>
 
       <button class="gold-btn" onclick="goToSection(4)">Continue →</button>
     </div>

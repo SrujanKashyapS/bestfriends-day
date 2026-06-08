@@ -173,6 +173,27 @@
         </div>
       </div>
 
+      <!-- Voice Note Player -->
+      <div class="voice-note-wrapper" id="voiceNoteWrapper">
+        <div class="voice-note-label">I left you a voice note...</div>
+        <button class="voice-note-btn" id="voiceNoteBtn" aria-label="Play voice note">
+          <span class="voice-note-ring"></span>
+          <span class="voice-note-ring ring-2"></span>
+          <svg class="voice-icon play-icon" id="voicePlayIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/>
+          </svg>
+          <svg class="voice-icon pause-icon" id="voicePauseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
+            <rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"/>
+          </svg>
+        </button>
+        <div class="voice-note-progress" id="voiceProgress">
+          <div class="voice-note-bar" id="voiceBar"></div>
+        </div>
+        <div class="voice-note-hint">tap to play</div>
+      </div>
+      <audio id="voiceAudio" src="assets/voice-note.ogg" preload="auto"></audio>
+
       <button class="gold-btn" onclick="goToSection(4)">Continue →</button>
     </div>
   </div>

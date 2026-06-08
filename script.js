@@ -7,7 +7,7 @@
 
   // --- State ---
   let currentSection = 0;
-  const totalSections = 8;
+  const totalSections = 7;
   let userName = '';
   let isTransitioning = false;
   let musicPlaying = false;
@@ -334,47 +334,21 @@
   });
 
   // ============================
-  // Voice Note Player
+  // Voice Note — inline play
   // ============================
-  const voiceBtn = document.getElementById('voiceNoteBtn');
+  const playVoiceBtn = document.getElementById('playVoiceBtn');
   const voiceAudio = document.getElementById('voiceAudio');
-  const voicePlayIcon = document.getElementById('voicePlayIcon');
-  const voicePauseIcon = document.getElementById('voicePauseIcon');
-  const voiceBar = document.getElementById('voiceBar');
-  const voiceHint = document.querySelector('.voice-note-hint');
-  let voicePlaying = false;
 
-  voiceBtn.addEventListener('click', () => {
-    if (voicePlaying) {
-      voiceAudio.pause();
-      voiceBtn.classList.remove('playing');
-      voicePlayIcon.style.display = '';
-      voicePauseIcon.style.display = 'none';
-      voicePlaying = false;
-    } else {
-      voiceAudio.play().then(() => {
-        voiceBtn.classList.add('playing');
-        voicePlayIcon.style.display = 'none';
-        voicePauseIcon.style.display = '';
-        voiceHint.classList.add('hidden');
-        voicePlaying = true;
-      }).catch(() => {});
-    }
-  });
-
-  voiceAudio.addEventListener('timeupdate', () => {
-    if (voiceAudio.duration) {
-      const pct = (voiceAudio.currentTime / voiceAudio.duration) * 100;
-      voiceBar.style.width = pct + '%';
-    }
+  playVoiceBtn.addEventListener('click', () => {
+    voiceAudio.play().then(() => {
+      playVoiceBtn.textContent = '🎙️ Playing...';
+      playVoiceBtn.style.pointerEvents = 'none';
+    }).catch(() => {});
   });
 
   voiceAudio.addEventListener('ended', () => {
-    voiceBtn.classList.remove('playing');
-    voicePlayIcon.style.display = '';
-    voicePauseIcon.style.display = 'none';
-    voiceBar.style.width = '0%';
-    voicePlaying = false;
+    playVoiceBtn.textContent = '🎙️ One Last Thing →';
+    playVoiceBtn.style.pointerEvents = '';
   });
 
   // ============================

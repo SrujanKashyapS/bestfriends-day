@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Best Friends Day 💛</title>
+  <meta name="description" content="A heartfelt tribute to the friends who became family. Happy Best Friends Day." />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Persistent Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Music Toggle -->
+  <!-- CUSTOMIZE: Replace assets/bg-music.mp3 with your own background music file -->
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle background music">🎵</button>
+  <audio id="bgMusic" src="assets/bg-music.mp3" loop preload="auto"></audio>
+
+  <!-- Navigation Dots -->
+  <div class="nav-dots" id="navDots"></div>
+
+  <!-- ============================================
+       SECTION 1 — Landing
+       ============================================ -->
+  <div class="section active" id="section-0" data-section="0">
+    <div class="landing-content">
+      <div class="typing-container" id="typingContainer">
+        <!-- CUSTOMIZE: Change the landing quotes below -->
+        <div class="typing-line" id="line-0"></div>
+        <div class="typing-line" id="line-1"></div>
+        <div class="typing-line" id="line-2"></div>
+        <div class="typing-line" id="line-3"></div>
+      </div>
+      <div class="begin-btn" id="beginBtn">
+        <button class="gold-btn" onclick="goToSection(1)">Begin Journey →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 2 — Name Reveal
+       ============================================ -->
+  <div class="section" id="section-1" data-section="1">
+    <div class="name-reveal-content">
+      <div class="name-form" id="nameForm">
+        <h2>Before we continue...</h2>
+        <p>What's your name?</p>
+        <div class="name-input-wrapper">
+          <input
+            type="text"
+            class="name-input"
+            id="nameInput"
+            placeholder="Type your name"
+            autocomplete="off"
+            maxlength="30"
+          />
+        </div>
+        <button class="gold-btn" id="nameSubmitBtn">Continue →</button>
+      </div>
+      <div class="welcome-text" id="welcomeText"></div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 3 — Friendship Scanner
+       ============================================ -->
+  <div class="section" id="section-2" data-section="2">
+    <div class="scanner-content">
+      <div class="scanner-title">⟐ Friendship Analysis Protocol ⟐</div>
+
+      <div id="scanSteps">
+        <div class="scan-step" id="scan-0">Loading Memories...&nbsp;&nbsp;<span class="scan-bar" id="bar-0"></span></div>
+        <div class="scan-step" id="scan-1">Loading Laughter...&nbsp;&nbsp;<span class="scan-bar" id="bar-1"></span></div>
+        <div class="scan-step" id="scan-2">Loading Chaos...&nbsp;&nbsp;&nbsp;&nbsp;<span class="scan-bar" id="bar-2"></span></div>
+        <div class="scan-step" id="scan-3">Loading Trust...&nbsp;&nbsp;&nbsp;&nbsp;<span class="scan-bar" id="bar-3"></span></div>
+      </div>
+
+      <div class="friendship-report" id="friendshipReport">
+        <div class="report-title">◆ Friendship Report ◆</div>
+        <div class="report-row">
+          <span class="label">Loyalty</span>
+          <span class="bar">██████████</span>
+          <span class="value">100%</span>
+        </div>
+        <div class="report-row">
+          <span class="label">Humor</span>
+          <span class="bar">██████████</span>
+          <span class="value">100%</span>
+        </div>
+        <div class="report-row chaos">
+          <span class="label">Chaos</span>
+          <span class="bar">██████████</span>
+          <span class="value">1000%</span>
+        </div>
+        <div class="report-row maturity">
+          <span class="label">Maturity</span>
+          <span class="bar">█░░░░░░░░░</span>
+          <span class="value">5%</span>
+        </div>
+      </div>
+
+      <div class="scanner-btn" id="scannerBtn">
+        <button class="gold-btn" onclick="goToSection(3)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 4 — Memory Wall
+       ============================================ -->
+  <div class="section" id="section-3" data-section="3">
+    <div class="memory-content">
+      <h2>Our Memories</h2>
+      <p class="memory-subtitle">Every photo tells a story we'll never forget</p>
+
+      <div class="memory-grid">
+        <!-- CUSTOMIZE: Replace assets/photo1.jpg through photo4.jpg with your own photos -->
+        <!-- CUSTOMIZE: Update the captions in data-caption attributes -->
+        <div class="memory-card" data-img="assets/photo1.jpg" data-caption="The day we almost got kicked out.">
+          <img src="assets/photo1.jpg" alt="Memory 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder-icon" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" /><circle cx="12" cy="13" r="4" /></svg>
+            <span>Photo 1</span>
+          </div>
+          <div class="memory-overlay"><span>Remember this day?</span></div>
+        </div>
+
+        <div class="memory-card" data-img="assets/photo2.jpg" data-caption="We laughed until it hurt.">
+          <img src="assets/photo2.jpg" alt="Memory 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder-icon" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" /><circle cx="12" cy="13" r="4" /></svg>
+            <span>Photo 2</span>
+          </div>
+          <div class="memory-overlay"><span>Remember this day?</span></div>
+        </div>
+
+        <div class="memory-card" data-img="assets/photo3.jpg" data-caption="That spontaneous adventure.">
+          <img src="assets/photo3.jpg" alt="Memory 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder-icon" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" /><circle cx="12" cy="13" r="4" /></svg>
+            <span>Photo 3</span>
+          </div>
+          <div class="memory-overlay"><span>Remember this day?</span></div>
+        </div>
+
+        <div class="memory-card" data-img="assets/photo4.jpg" data-caption="The one we'll never forget.">
+          <img src="assets/photo4.jpg" alt="Memory 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder-icon" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" /><circle cx="12" cy="13" r="4" /></svg>
+            <span>Photo 4</span>
+          </div>
+          <div class="memory-overlay"><span>Remember this day?</span></div>
+        </div>
+      </div>
+
+      <button class="gold-btn" onclick="goToSection(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Memory Modal -->
+  <div class="modal-backdrop" id="memoryModal">
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="Memory" style="display:none;" />
+      <div class="placeholder-large" id="modalPlaceholder" style="display:none;">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" fill="none" stroke-width="1" /><circle cx="12" cy="13" r="4" stroke="currentColor" fill="none" stroke-width="1" /></svg>
+      </div>
+      <p class="modal-caption" id="modalCaption"></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 5 — Friendship Timeline
+       ============================================ -->
+  <div class="section" id="section-4" data-section="4">
+    <div class="timeline-content">
+      <h2>Our Journey</h2>
+
+      <div class="timeline">
+        <!-- CUSTOMIZE: Update years and descriptions below -->
+        <div class="timeline-node" data-delay="0">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2023</div>
+          <div class="timeline-desc">"Met you"</div>
+        </div>
+        <div class="timeline-node" data-delay="1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <div class="timeline-desc">"Became close friends"</div>
+        </div>
+        <div class="timeline-node" data-delay="2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-desc">"Shared countless memories"</div>
+        </div>
+        <div class="timeline-node" data-delay="3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+          <div class="timeline-desc">"Still here"</div>
+        </div>
+      </div>
+
+      <div class="timeline-btn">
+        <button class="gold-btn" onclick="goToSection(5)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 6 — Secret Letter
+       ============================================ -->
+  <div class="section" id="section-5" data-section="5">
+    <div class="letter-content">
+      <div class="letter-card">
+        <!-- CUSTOMIZE: Edit the letter lines below -->
+        <div class="letter-line" id="letter-0"></div>
+        <div class="letter-line" id="letter-1">People often talk about success, money, careers and achievements.</div>
+        <div class="letter-line" id="letter-2">But years later, what we truly remember are the people who stood beside us.</div>
+        <div class="letter-line" id="letter-3">Thank you for being one of them.</div>
+        <div class="letter-line" id="letter-4">Happy Best Friends Day ❤️</div>
+      </div>
+      <div class="letter-btn" id="letterBtn">
+        <button class="gold-btn" onclick="goToSection(6)">One Last Thing →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 7 — Final Surprise
+       ============================================ -->
+  <div class="section" id="section-6" data-section="6">
+    <div class="surprise-content">
+      <button class="gold-btn surprise-calc-btn" id="calcBtn">Calculate Friendship Value</button>
+      <div class="surprise-sequence" id="surpriseSequence" style="display:none;"></div>
+      <div class="final-message" id="finalMessage">See you in the next chapter. 🥂</div>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>

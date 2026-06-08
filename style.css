@@ -1,0 +1,1008 @@
+/* ============================================
+   Best Friends Day — Premium Dark Luxury Theme
+   ============================================ */
+
+/* --- CSS Custom Properties --- */
+:root {
+  /* Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: rgba(20, 20, 20, 0.85);
+  --gold: #c9a84c;
+  --gold-light: #e0c872;
+  --gold-dim: rgba(201, 168, 76, 0.3);
+  --gold-glow: rgba(201, 168, 76, 0.15);
+  --cream: #f5f0e8;
+  --cream-dim: rgba(245, 240, 232, 0.6);
+  --red-error: #e74c3c;
+  --warm-gradient: linear-gradient(135deg, #1a1207 0%, #0a0a0a 40%, #0d0804 100%);
+  --glass-bg: rgba(15, 15, 15, 0.65);
+  --glass-border: rgba(201, 168, 76, 0.25);
+
+  /* Fonts */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Spacing */
+  --section-padding: 2rem;
+
+  /* Transitions */
+  --fade-duration: 600ms;
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Particle Canvas (persistent background layer) --- */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Music Toggle --- */
+.music-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  color: var(--gold);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.music-toggle:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow);
+  transform: scale(1.05);
+}
+
+/* --- Section System --- */
+.section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-padding);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--fade-duration) var(--ease-smooth),
+              visibility var(--fade-duration) var(--ease-smooth);
+  overflow-y: auto;
+}
+
+.section.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Navigation Dots --- */
+.nav-dots {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.nav-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.nav-dot:hover {
+  border-color: var(--gold);
+}
+
+/* ===========================
+   Section 1 — Landing
+   =========================== */
+.landing-content {
+  text-align: center;
+  max-width: 700px;
+}
+
+.typing-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.typing-line {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+  letter-spacing: 0.02em;
+}
+
+.typing-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typing-line .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--gold);
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.begin-btn {
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.begin-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* --- Buttons (shared) --- */
+.gold-btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gold);
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 0;
+  cursor: pointer;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.4s var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
+  transition: left 0.5s var(--ease-smooth);
+}
+
+.gold-btn:hover::before {
+  left: 100%;
+}
+
+.gold-btn:hover {
+  background: rgba(201, 168, 76, 0.08);
+  box-shadow: 0 0 30px var(--gold-glow), inset 0 0 30px rgba(201, 168, 76, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Section 2 — Name Reveal
+   =========================== */
+.name-reveal-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.name-reveal-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.name-reveal-content p {
+  color: var(--cream-dim);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.name-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 1.5rem;
+}
+
+.name-input {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--cream);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--gold-dim);
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.05em;
+  transition: border-color 0.3s var(--ease-smooth);
+}
+
+.name-input::placeholder {
+  color: rgba(245, 240, 232, 0.25);
+  font-style: italic;
+}
+
+.name-input:focus {
+  border-bottom-color: var(--gold);
+}
+
+.welcome-text {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+  margin-top: 1rem;
+}
+
+.welcome-text.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.name-form {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-smooth);
+}
+
+.name-form.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===========================
+   Section 3 — Friendship Scanner
+   =========================== */
+.scanner-content {
+  text-align: left;
+  max-width: 520px;
+  width: 100%;
+}
+
+.scanner-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.scan-step {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  color: var(--gold-light);
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+}
+
+.scan-step.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scan-bar {
+  display: inline-block;
+  overflow: hidden;
+  color: var(--gold);
+}
+
+.friendship-report {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 1px solid var(--gold-dim);
+  background: var(--bg-card);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+}
+
+.friendship-report.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.report-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.report-row {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  color: var(--cream);
+  padding: 0.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.report-row .label {
+  color: var(--cream-dim);
+  min-width: 80px;
+}
+
+.report-row .bar {
+  color: var(--gold);
+  flex: 1;
+}
+
+.report-row .value {
+  color: var(--gold-light);
+  font-weight: 700;
+  min-width: 50px;
+  text-align: right;
+}
+
+.report-row.chaos .value {
+  color: var(--red-error);
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.report-row.maturity .bar {
+  color: var(--cream-dim);
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.scanner-btn {
+  text-align: center;
+  margin-top: 2rem;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-smooth);
+}
+
+.scanner-btn.visible {
+  opacity: 1;
+}
+
+/* ===========================
+   Section 4 — Memory Wall
+   =========================== */
+.memory-content {
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.memory-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.memory-subtitle {
+  color: var(--cream-dim);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.memory-card {
+  position: relative;
+  aspect-ratio: 4/3;
+  border: 1px solid var(--gold-dim);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-smooth);
+  background: var(--bg-secondary);
+}
+
+.memory-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.memory-card .placeholder-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--gold-dim);
+}
+
+.placeholder-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--gold-dim);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.placeholder-icon span {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.memory-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.memory-overlay span {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  color: var(--gold-light);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.memory-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px var(--gold-glow);
+  transform: scale(1.03);
+}
+
+.memory-card:hover img {
+  transform: scale(1.08);
+}
+
+.memory-card:hover .memory-overlay {
+  opacity: 1;
+}
+
+/* --- Memory Modal --- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-smooth), visibility 0.4s var(--ease-smooth);
+  padding: 2rem;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.modal-backdrop.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-content img {
+  width: 100%;
+  border: 1px solid var(--gold-dim);
+  margin-bottom: 1.5rem;
+}
+
+.modal-content .placeholder-large {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border: 1px solid var(--gold-dim);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content .placeholder-large svg {
+  width: 60px;
+  height: 60px;
+  stroke: var(--gold-dim);
+  fill: none;
+  stroke-width: 1;
+}
+
+.modal-caption {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--cream-dim);
+  line-height: 1.5;
+}
+
+/* ===========================
+   Section 5 — Timeline
+   =========================== */
+.timeline-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.timeline-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--cream);
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.timeline {
+  position: relative;
+  padding: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold-dim) 15%, var(--gold) 50%, var(--gold-dim) 85%, transparent);
+  transform: translateX(-50%);
+}
+
+.timeline-node {
+  position: relative;
+  padding: 1.5rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+}
+
+.timeline-node.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px var(--gold-glow);
+  z-index: 2;
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--cream-dim);
+  font-style: italic;
+}
+
+.timeline-btn {
+  margin-top: 2.5rem;
+}
+
+/* ===========================
+   Section 6 — Secret Letter
+   =========================== */
+.letter-content {
+  max-width: 580px;
+  width: 100%;
+}
+
+.letter-card {
+  padding: clamp(2rem, 5vw, 3rem);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 4px;
+  position: relative;
+}
+
+.letter-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--gold-dim), transparent 50%, var(--gold-dim));
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.letter-line {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--cream);
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease-smooth), transform 0.5s var(--ease-smooth);
+  margin-bottom: 0.75rem;
+}
+
+.letter-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-line:first-child {
+  color: var(--gold);
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  margin-bottom: 1.5rem;
+}
+
+.letter-line:last-child {
+  color: var(--gold-light);
+  margin-top: 1.5rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+}
+
+.letter-btn {
+  text-align: center;
+  margin-top: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-smooth);
+}
+
+.letter-btn.visible {
+  opacity: 1;
+}
+
+/* ===========================
+   Section 7 — Final Surprise
+   =========================== */
+.surprise-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.surprise-calc-btn {
+  font-size: 1.1rem;
+  padding: 1.2rem 3rem;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.surprise-calc-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.surprise-sequence {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: var(--gold-light);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.surprise-step {
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.surprise-step.visible {
+  opacity: 1;
+}
+
+.error-text {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 900;
+  color: var(--red-error);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 40px rgba(231, 76, 60, 0.4);
+  animation: errorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%, 100% { text-shadow: 0 0 40px rgba(231, 76, 60, 0.4); }
+  50% { text-shadow: 0 0 80px rgba(231, 76, 60, 0.7), 0 0 120px rgba(231, 76, 60, 0.3); }
+}
+
+.error-subtext {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--cream-dim);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.final-message {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--gold);
+  margin-top: 2.5rem;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth);
+}
+
+.final-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Warm background transition for surprise */
+.section.warm-bg {
+  background: var(--warm-gradient);
+}
+
+/* ===========================
+   Sparkle / Decorative Elements
+   =========================== */
+.sparkle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  color: var(--gold-dim);
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+}
+
+.sparkle-divider::before,
+.sparkle-divider::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim));
+}
+
+.sparkle-divider::after {
+  background: linear-gradient(to left, transparent, var(--gold-dim));
+}
+
+/* ===========================
+   Responsive — Mobile
+   =========================== */
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 1.5rem;
+  }
+
+  .nav-dots {
+    right: 0.75rem;
+    gap: 8px;
+  }
+
+  .nav-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .music-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .gold-btn {
+    padding: 0.85rem 2rem;
+    font-size: 0.85rem;
+  }
+
+  .memory-grid {
+    gap: 0.75rem;
+  }
+
+  .report-row {
+    font-size: 0.7rem;
+  }
+
+  .friendship-report {
+    padding: 1.25rem;
+  }
+
+  .letter-card {
+    padding: 1.5rem;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-dot {
+    left: 20px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .timeline-node {
+    padding-left: 50px;
+    text-align: left;
+  }
+
+  .timeline-year,
+  .timeline-desc {
+    text-align: left;
+  }
+}
+
+@media (max-width: 375px) {
+  .typing-line {
+    font-size: 1.2rem;
+  }
+
+  .scan-step {
+    font-size: 0.72rem;
+  }
+}
+
+/* ===========================
+   Utility Animations
+   =========================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gold shimmer for special text */
+.shimmer-text {
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold), var(--gold-light), var(--gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Scrollbar (for sections with overflow) */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}

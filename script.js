@@ -465,29 +465,8 @@
     }, 500);
   }
 
-  // ============================
-  // Music Toggle
-  // ============================
-  const musicToggle = document.getElementById('musicToggle');
-  const bgMusic = document.getElementById('bgMusic');
 
-  bgMusic.volume = 0.3;
 
-  musicToggle.addEventListener('click', () => {
-    if (musicPlaying) {
-      bgMusic.pause();
-      musicToggle.textContent = '🔇';
-      musicPlaying = false;
-    } else {
-      bgMusic.play().then(() => {
-        musicToggle.textContent = '🎵';
-        musicPlaying = true;
-      }).catch(() => {
-        // Autoplay blocked — user will need to click again
-        musicToggle.textContent = '🔇';
-      });
-    }
-  });
 
   // ============================
   // Keyboard Navigation

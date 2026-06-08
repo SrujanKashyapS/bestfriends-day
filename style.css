@@ -87,32 +87,8 @@ body::after {
   background-size: 256px 256px;
 }
 
-/* --- Music Toggle --- */
-.music-toggle {
-  position: fixed;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 1000;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--gold-dim);
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(10px);
-  color: var(--gold);
-  font-size: 1.25rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s var(--ease-smooth);
-}
 
-.music-toggle:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 20px var(--gold-glow);
-  transform: scale(1.05);
-}
+
 
 /* --- Section System --- */
 .section {

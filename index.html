@@ -173,9 +173,31 @@
         </div>
       </div>
 
-      <!-- Voice Note Player -->
+      <button class="gold-btn" onclick="goToSection(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Memory Modal -->
+  <div class="modal-backdrop" id="memoryModal">
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="Memory" style="display:none;" />
+      <div class="placeholder-large" id="modalPlaceholder" style="display:none;">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" fill="none" stroke-width="1" /><circle cx="12" cy="13" r="4" stroke="currentColor" fill="none" stroke-width="1" /></svg>
+      </div>
+      <p class="modal-caption" id="modalCaption"></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SECTION 5 — Voice Note
+       ============================================ -->
+  <div class="section" id="section-4" data-section="4">
+    <div class="voice-section-content">
+      <div class="voice-section-icon">🎙️</div>
+      <h2 class="voice-section-title">Wait... I recorded something for you</h2>
+      <p class="voice-section-subtitle">Some things are better heard than read</p>
+
       <div class="voice-note-wrapper" id="voiceNoteWrapper">
-        <div class="voice-note-label">I left you a voice note...</div>
         <button class="voice-note-btn" id="voiceNoteBtn" aria-label="Play voice note">
           <span class="voice-note-ring"></span>
           <span class="voice-note-ring ring-2"></span>
@@ -197,25 +219,16 @@
         <source src="assets/voice-note.ogg" type="audio/ogg">
       </audio>
 
-      <button class="gold-btn" onclick="goToSection(4)">Continue →</button>
-    </div>
-  </div>
+      <p class="voice-section-footnote">"Words fade. But the voice of a friend stays."</p>
 
-  <!-- Memory Modal -->
-  <div class="modal-backdrop" id="memoryModal">
-    <div class="modal-content">
-      <img id="modalImg" src="" alt="Memory" style="display:none;" />
-      <div class="placeholder-large" id="modalPlaceholder" style="display:none;">
-        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" fill="none" stroke-width="1" /><circle cx="12" cy="13" r="4" stroke="currentColor" fill="none" stroke-width="1" /></svg>
-      </div>
-      <p class="modal-caption" id="modalCaption"></p>
+      <button class="gold-btn" onclick="goToSection(5)" style="margin-top:2rem;">Continue →</button>
     </div>
   </div>
 
   <!-- ============================================
-       SECTION 5 — Friendship Timeline
+       SECTION 6 — Friendship Timeline
        ============================================ -->
-  <div class="section" id="section-4" data-section="4">
+  <div class="section" id="section-5" data-section="5">
     <div class="timeline-content">
       <h2>Our Journey</h2>
 
@@ -244,15 +257,15 @@
       </div>
 
       <div class="timeline-btn">
-        <button class="gold-btn" onclick="goToSection(5)">Continue →</button>
+        <button class="gold-btn" onclick="goToSection(6)">Continue →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       SECTION 6 — Secret Letter
+       SECTION 7 — Secret Letter
        ============================================ -->
-  <div class="section" id="section-5" data-section="5">
+  <div class="section" id="section-6" data-section="6">
     <div class="letter-content">
       <div class="letter-card">
         <!-- CUSTOMIZE: Edit the letter lines below -->
@@ -263,15 +276,15 @@
         <div class="letter-line" id="letter-4">Happy Best Friends Day ❤️</div>
       </div>
       <div class="letter-btn" id="letterBtn">
-        <button class="gold-btn" onclick="goToSection(6)">One Last Thing →</button>
+        <button class="gold-btn" onclick="goToSection(7)">One Last Thing →</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       SECTION 7 — Final Surprise
+       SECTION 8 — Final Surprise
        ============================================ -->
-  <div class="section" id="section-6" data-section="6">
+  <div class="section" id="section-7" data-section="7">
     <div class="surprise-content">
       <button class="gold-btn surprise-calc-btn" id="calcBtn">Calculate Friendship Value</button>
       <div class="surprise-sequence" id="surpriseSequence" style="display:none;"></div>

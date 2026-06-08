@@ -7,7 +7,7 @@
 
   // --- State ---
   let currentSection = 0;
-  const totalSections = 7;
+  const totalSections = 8;
   let userName = '';
   let isTransitioning = false;
   let musicPlaying = false;
@@ -171,10 +171,10 @@
       case 2:
         if (!scannerRan) runScanner();
         break;
-      case 4:
+      case 5:
         if (!timelineRan) runTimeline();
         break;
-      case 5:
+      case 6:
         if (!letterRan) runLetter();
         break;
     }
@@ -456,7 +456,7 @@
       surpriseSeq.appendChild(subtext);
 
       // Warm background
-      document.getElementById('section-6').classList.add('warm-bg');
+      document.getElementById('section-7').classList.add('warm-bg');
 
       // Confetti burst
       fireConfetti();
